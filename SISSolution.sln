@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInformationWebAPI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInformationMVC", "StudentInformationMVC\StudentInformationMVC.csproj", "{D2FC9C6F-7FC1-4D5C-8DF0-2BC5BD51DA48}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{52832EA0-CE68-4358-900B-7FC69672C75B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{891FFBFD-ACF0-4572-BDD8-25EFD899AF57}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\sisscript.sql = Scripts\sisscript.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{891FFBFD-ACF0-4572-BDD8-25EFD899AF57} = {52832EA0-CE68-4358-900B-7FC69672C75B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F72111D3-F0D6-410B-8D5A-8F2D06A318F7}
