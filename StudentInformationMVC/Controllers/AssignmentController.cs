@@ -9,30 +9,20 @@ using System.Threading;
 
 namespace StudentInformationMVC.Controllers
 {
-    public class StudentController : Controller
+    public class AssignmentController : Controller
     {
         //
         // GET: /Employee/
         public ActionResult Index()
         {
-            IEnumerable<StudentViewModel> empList;
+            IEnumerable<AssignmentViewModel> empList;
             HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee").Result;
-            empList = response.Content.ReadAsAsync<IEnumerable<StudentViewModel>>().Result;
+            empList = response.Content.ReadAsAsync<IEnumerable<AssignmentViewModel>>().Result;
             return View(empList);
         }
 
-        public ActionResult AddOrEdit(int id = 0)
-        {
-            if (id == 0)
-                return View(new StudentViewModel());
-            else
-            {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee/" + id.ToString()).Result;
-                return View(response.Content.ReadAsAsync<StudentViewModel>().Result);
-            }
-        }
         [HttpPost]
-        public ActionResult AddOrEdit(StudentViewModel emp)
+        public ActionResult AddOrEdit(AssignmentViewModel emp)
         {
             if (emp.Id == 0)
             {
