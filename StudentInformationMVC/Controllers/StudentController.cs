@@ -3,87 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using StudentInformationMVC.Models;
+using System.Threading;
 
 namespace StudentInformationMVC.Controllers
 {
     public class StudentController : Controller
     {
-        // GET: Student
+        //
+        // GET: /Employee/
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<StudentViewModel> empList;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee").Result;
+            empList = response.Content.ReadAsAsync<IEnumerable<StudentViewModel>>().Result;
+            return View(empList);
         }
 
-        // GET: Student/Details/5
-        public ActionResult Details(int id)
+        public ActionResult AddOrEdit(int id = 0)
         {
-            return View();
+            if (id == 0)
+                return View(new StudentViewModel());
+            else
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee/" + id.ToString()).Result;
+                return View(response.Content.ReadAsAsync<StudentViewModel>().Result);
+            }
         }
-
-        // GET: Student/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddOrEdit(StudentViewModel emp)
         {
-            try
+            if (emp.EmployeeID == 0)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Employee", emp).Result;
+                TempData["SuccessMessage"] = "Saved Successfully";
             }
-            catch
+            else
             {
-                return View();
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Employee/" + emp.EmployeeID, emp).Result;
+                TempData["SuccessMessage"] = "Updated Successfully";
             }
+            return RedirectToAction("Index");
         }
 
-        // GET: Student/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Student/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Student/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Student/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Employee/" + id.ToString()).Result;
+            TempData["SuccessMessage"] = "Deleted Successfully";
+            return RedirectToAction("Index");
         }
     }
-}
