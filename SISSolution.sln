@@ -11,7 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{52
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{891FFBFD-ACF0-4572-BDD8-25EFD899AF57}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\Documents\scriptwithdata.sql = ..\..\..\Documents\scriptwithdata.sql
 		Scripts\sisscript.sql = Scripts\sisscript.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snaps", "Snaps", "{A7CE5821-A896-4CF0-9C4E-FA9F2E07C404}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Documents\Assignment.png = ..\..\..\Documents\Assignment.png
+		..\..\..\Documents\Student.png = ..\..\..\Documents\Student.png
 	EndProjectSection
 EndProject
 Global
