@@ -14,7 +14,12 @@ namespace StudentInformationWebAPI.Models
     
     public partial class Assignment
     {
-       
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Assignment()
+        {
+            this.AssignmentScores = new HashSet<AssignmentScore>();
+        }
+    
         public int Id { get; set; }
         public string Subject { get; set; }
         public string Type { get; set; }
@@ -28,6 +33,8 @@ namespace StudentInformationWebAPI.Models
         public string Reviewed { get; set; }
         public string DocumentLink { get; set; }
         public string Name { get; set; }
-
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignmentScore> AssignmentScores { get; set; }
     }
 }

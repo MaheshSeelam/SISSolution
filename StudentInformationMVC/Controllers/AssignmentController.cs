@@ -16,7 +16,7 @@ namespace StudentInformationMVC.Controllers
         public ActionResult Index()
         {
             IEnumerable<AssignmentViewModel> empList;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee").Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Assignments").Result;
             empList = response.Content.ReadAsAsync<IEnumerable<AssignmentViewModel>>().Result;
             return View(empList);
         }
@@ -26,12 +26,12 @@ namespace StudentInformationMVC.Controllers
         {
             if (emp.Id == 0)
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Employee", emp).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Assignments", emp).Result;
                 TempData["SuccessMessage"] = "Saved Successfully";
             }
             else
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Employee/" + emp.Id, emp).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Assignments/" + emp.Id, emp).Result;
                 TempData["SuccessMessage"] = "Updated Successfully";
             }
             return RedirectToAction("Index");
@@ -39,7 +39,7 @@ namespace StudentInformationMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Employee/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Assignments/" + id.ToString()).Result;
             TempData["SuccessMessage"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }

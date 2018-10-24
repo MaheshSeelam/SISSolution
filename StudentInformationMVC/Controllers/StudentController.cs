@@ -16,7 +16,7 @@ namespace StudentInformationMVC.Controllers
         public ActionResult Index()
         {
             IEnumerable<StudentViewModel> empList;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee").Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Students").Result;
             empList = response.Content.ReadAsAsync<IEnumerable<StudentViewModel>>().Result;
             return View(empList);
         }
@@ -27,7 +27,7 @@ namespace StudentInformationMVC.Controllers
                 return View(new StudentViewModel());
             else
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Employee/" + id.ToString()).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Students/" + id.ToString()).Result;
                 return View(response.Content.ReadAsAsync<StudentViewModel>().Result);
             }
         }
@@ -36,12 +36,12 @@ namespace StudentInformationMVC.Controllers
         {
             if (emp.Id == 0)
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Employee", emp).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Students", emp).Result;
                 TempData["SuccessMessage"] = "Saved Successfully";
             }
             else
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Employee/" + emp.Id, emp).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Students/" + emp.Id, emp).Result;
                 TempData["SuccessMessage"] = "Updated Successfully";
             }
             return RedirectToAction("Index");
@@ -49,7 +49,7 @@ namespace StudentInformationMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Employee/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Students/" + id.ToString()).Result;
             TempData["SuccessMessage"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }

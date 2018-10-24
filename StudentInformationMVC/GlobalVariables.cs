@@ -13,7 +13,7 @@ namespace StudentInformationMVC
 
         static GlobalVariables()
         {
-            WebApiClient.BaseAddress = new Uri("http://localhost:64028/api/");
+            WebApiClient.BaseAddress = new Uri("http://localhost:55283/api/");
             WebApiClient.DefaultRequestHeaders.Clear();
             WebApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
